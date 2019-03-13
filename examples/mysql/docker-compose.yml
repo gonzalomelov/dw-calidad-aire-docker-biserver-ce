@@ -34,5 +34,13 @@ services:
       DATABASE_TYPE: mysql
     volumes:
       - ./pentaho:/biserver-ce/tomcat/logs
+    external_links:
+      - proyectocalidaddelaire_db_1
+    networks:
+      - default
+      - proyectocalidaddelaire_default
     depends_on:
       - mysqlserver
+networks:
+  proyectocalidaddelaire_default:
+    external: true
