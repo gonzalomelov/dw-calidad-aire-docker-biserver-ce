@@ -20,13 +20,13 @@ services:
         max-size: 10m
         max-file: "3"
     ports:
-      - "18080:8080"
+      - "8080:8080"
     environment:
       STORAGE_TYPE: mysql5
       SERVER_NAME: biserver-ce
       SERVER_HOST: localhost
-      SERVER_PORT: 18080
-      SERVER_URL: http://localhost:18080/pentaho/
+      SERVER_PORT: 8080
+      SERVER_URL: http://localhost:8080/pentaho/
       DATABASE_HOST: mysqlserver
       DATABASE_PORT: 3306
       DATABASE_USER: pentaho
