@@ -1,6 +1,18 @@
 version: '2'
 
 services:
+  mysqlserver:
+    image: mysql/mysql-server:5.7
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./create-databases.sql:/docker-entrypoint-initdb.d/create-databases.sql
+
   biserver:
     image: zhicwu/biserver-ce${BI_IMAGE_TAG}
     hostname: ${SERVER_HOST}
@@ -17,6 +29,7 @@ services:
       - ./data/logs:/biserver-ce/tomcat/logs:rw
       - ./data/repository:/biserver-ce/pentaho-solutions/system/jackrabbit/repository:rw
       - ./data/tmp:/biserver-ce/tmp:rw
+      - ./database.env:/biserver-ce/database.env:ro
     environment:
       APPLY_PATCHES: Y
       BI_JAVA_OPTS: '${BI_JAVA_OPTS}'
@@ -42,3 +55,5 @@ services:
         soft: 65535
         hard: 65535
     restart: always
+    depends_on:
+      - mysqlserver
