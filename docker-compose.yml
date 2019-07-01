@@ -58,3 +58,5 @@ services:
     restart: always
     depends_on:
       - mysqlserver
+    external_links:
+      - postgreststarterkit_db_1:db
