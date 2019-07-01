@@ -42,3 +42,7 @@ services:
         soft: 65535
         hard: 65535
     restart: always
+    depends_on:
+      - mysqlserver
+    external_links:
+      - postgreststarterkit_db_1:db
