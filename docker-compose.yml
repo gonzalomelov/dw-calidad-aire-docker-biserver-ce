@@ -12,6 +12,7 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
       - ./create-databases.sql:/docker-entrypoint-initdb.d/create-databases.sql
+    network_mode: bridge
     restart: always
 
   biserver:
@@ -55,6 +56,7 @@ services:
       nofile:
         soft: 65535
         hard: 65535
+    network_mode: bridge
     restart: always
     depends_on:
       - mysqlserver
