@@ -123,6 +123,12 @@ RUN echo "Post configuration..." \
 	&& chmod 0600 /var/spool/cron/crontabs/root \
 	&& chmod +x *.sh /usr/local/bin/*.sh
 
+RUN apt-get update \
+  && apt-get install -y git  \
+  && cd /biserver-ce/pentaho-solutions/system \
+  && git clone https://gonzalomelokonatech:\!et94P0J^MaX@bitbucket.org/gonzalomelokonatech/pentaho-ce-audit.git \
+  && chmod a+w pentahoObjects.spring.xml
+
 ENTRYPOINT ["/sbin/my_init", "--", "./docker-entrypoint.sh"]
 
 #VOLUME ["$BISERVER_HOME/.pentaho", "$BISERVER_HOME/data/hsqldb", "$BISERVER_HOME/tomcat/logs", "$BISERVER_HOME/pentaho-solutions/system/jackrabbit/repository", "$BISERVER_HOME/tmp"]
