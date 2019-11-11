@@ -14,6 +14,8 @@ services:
       - ./create-databases.sql:/docker-entrypoint-initdb.d/create-databases.sql
     network_mode: bridge
     restart: always
+    labels:
+    - traefik.enable=false
 
   biserver:
     image: zhicwu/biserver-ce${BI_IMAGE_TAG}
@@ -64,3 +66,8 @@ services:
       - mysqlserver:mysqlserver
     external_links:
       - postgreststarterkit_db_1:db
+    labels:
+    - traefik.backend=analytics
+    - traefik.frontend.rule=Host:analytics.bieccamvd.com
+    - traefik.docker.network=bridge
+    - traefik.port=8080
