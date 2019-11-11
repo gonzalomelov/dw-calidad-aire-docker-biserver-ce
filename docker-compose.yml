@@ -17,6 +17,19 @@ services:
     labels:
     - traefik.enable=false
 
+  phpmyadmin:
+    image: 'bitnami/phpmyadmin:4'
+    ports:
+      - '10000:80'
+      - '10001:443'
+    volumes:
+      - 'phpmyadmin_data:/bitnami'
+    network_mode: bridge
+    links:
+    - mysqlserver:mariadb
+    labels:
+    - traefik.enable=false
+
   biserver:
     image: zhicwu/biserver-ce${BI_IMAGE_TAG}
     hostname: ${SERVER_HOST}
@@ -71,3 +84,7 @@ services:
     - traefik.frontend.rule=Host:analytics.bieccamvd.com
     - traefik.docker.network=bridge
     - traefik.port=8080
+
+volumes:
+  phpmyadmin_data:
+    driver: local
