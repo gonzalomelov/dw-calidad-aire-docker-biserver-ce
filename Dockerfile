@@ -127,7 +127,11 @@ RUN apt-get update \
   && apt-get install -y git  \
   && cd /biserver-ce/pentaho-solutions/system \
   && git clone https://gonzalomelokonatech:\!et94P0J^MaX@bitbucket.org/gonzalomelokonatech/pentaho-ce-audit.git \
-  && chmod a+w pentahoObjects.spring.xml
+  && chmod a+w /biserver-ce/pentaho-solutions/system/pentahoObjects.spring.xml
+  && git clone https://gonzalomelokonatech:\!et94P0J^MaX@bitbucket.org/gonzalomelokonatech/pentaho-performance-monitoring.git \
+  && chmod a+w /biserver-ce/tomcat/webapps/pentaho/WEB-INF/classes/log4j.xml \
+  && chmod a+w /biserver-ce/pentaho-solutions/system/pentaho-performance-monitoring/temp/mondrian_mdx.log \
+  && chmod a+w /biserver-ce/pentaho-solutions/system/pentaho-performance-monitoring/temp/mondrian_sql.log
 
 ENTRYPOINT ["/sbin/my_init", "--", "./docker-entrypoint.sh"]
 
