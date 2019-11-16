@@ -97,6 +97,11 @@ services:
     restart: always
     ports:
       - "9030:9090"
+    labels:
+    - traefik.backend=carte
+    - traefik.frontend.rule=Host:carte.bieccamvd.com
+    - traefik.docker.network=bridge
+    - traefik.port=9090
 
 volumes:
   phpmyadmin_data:
