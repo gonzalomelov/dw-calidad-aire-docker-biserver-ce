@@ -79,11 +79,24 @@ services:
       - mysqlserver:mysqlserver
     external_links:
       - postgreststarterkit_db_1:db
+      - sftp_sftp_1:sftp
+      - r_ropensciplumber_1:ropensciplumber
     labels:
     - traefik.backend=analytics
     - traefik.frontend.rule=Host:analytics.bieccamvd.com
     - traefik.docker.network=bridge
     - traefik.port=8080
+
+  nginx: 
+    image: nginx:latest
+    links:
+      - biserver:bi
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    network_mode: bridge
+    restart: always
+    ports:
+      - "9030:9090"
 
 volumes:
   phpmyadmin_data:
