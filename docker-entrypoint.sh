@@ -177,6 +177,22 @@ KETTLE_CARTE_RETRIES=3
 " > $KETTLE_HOME/.kettle/kettle.properties
 	fi
 	
+  if [ ! -f $KETTLE_HOME/.kettle/repositories.xml ]; then
+    echo "Generating repositories.xml..."
+    cat <<< '<?xml version="1.0" encoding="UTF-8"?>
+<repositories>
+  <repository>
+    <id>KettleFileRepository</id>
+    <name>Local</name>
+    <description>File repository</description>
+    <is_default>true</is_default>
+    <base_directory>/biserver-ce/repository</base_directory>
+    <read_only>N</read_only>
+    <hides_hidden_files>N</hides_hidden_files>
+  </repository>
+</repositories>' > $KETTLE_HOME/.kettle/repositories.xml
+  fi
+  
 	if [ ! -f $KETTLE_HOME/slave-server-config.xml ]; then
 		echo "Generating master server configuration..."
 		cat <<< "<slave_config>
