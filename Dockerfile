@@ -133,6 +133,9 @@ RUN apt-get update \
   && chmod a+w /biserver-ce/pentaho-solutions/system/pentaho-performance-monitoring/temp/mondrian_mdx.log \
   && chmod a+w /biserver-ce/pentaho-solutions/system/pentaho-performance-monitoring/temp/mondrian_sql.log
 
+RUN mkdir repository
+RUN chmod a+w repository
+
 ENTRYPOINT ["/sbin/my_init", "--", "./docker-entrypoint.sh"]
 
 #VOLUME ["$BISERVER_HOME/.pentaho", "$BISERVER_HOME/data/hsqldb", "$BISERVER_HOME/tomcat/logs", "$BISERVER_HOME/pentaho-solutions/system/jackrabbit/repository", "$BISERVER_HOME/tmp"]

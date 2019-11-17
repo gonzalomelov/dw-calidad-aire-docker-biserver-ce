@@ -208,6 +208,11 @@ KETTLE_CARTE_RETRIES=3
         <max_log_lines>${PDI_MAX_LOG_LINES}</max_log_lines>
         <max_log_timeout_minutes>${PDI_MAX_LOG_TIMEOUT}</max_log_timeout_minutes>
         <object_timeout_minutes>${PDI_MAX_OBJ_TIMEOUT}</object_timeout_minutes>
+        <repository>
+          <name>Local</name>
+          <username>admin</username>
+          <password>admin</password>
+        </repository>
 </slave_config>" > $KETTLE_HOME/slave-server-config.xml
 	fi
 }
