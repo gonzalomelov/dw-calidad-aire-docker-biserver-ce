@@ -136,6 +136,9 @@ RUN apt-get update \
 RUN mkdir repository
 RUN chmod a+w repository
 
+RUN mkdir Carte
+RUN chmod a+rw Carte
+
 ENTRYPOINT ["/sbin/my_init", "--", "./docker-entrypoint.sh"]
 
 #VOLUME ["$BISERVER_HOME/.pentaho", "$BISERVER_HOME/data/hsqldb", "$BISERVER_HOME/tomcat/logs", "$BISERVER_HOME/pentaho-solutions/system/jackrabbit/repository", "$BISERVER_HOME/tmp"]
