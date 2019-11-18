@@ -139,6 +139,10 @@ RUN chmod a+w repository
 RUN mkdir Carte
 RUN chmod a+rw Carte
 
+RUN cd /biserver-ce/pentaho-solutions/system/kettle/plugins \
+  && wget https://github.com/atolcd/pentaho-gis-plugins/releases/download/v1.2.1/pentaho-gis-plugins-1.2.1-bin-7.zip \
+  && unzip pentaho-gis-plugins-1.2.1-bin-7.zip -d .
+
 ENTRYPOINT ["/sbin/my_init", "--", "./docker-entrypoint.sh"]
 
 #VOLUME ["$BISERVER_HOME/.pentaho", "$BISERVER_HOME/data/hsqldb", "$BISERVER_HOME/tomcat/logs", "$BISERVER_HOME/pentaho-solutions/system/jackrabbit/repository", "$BISERVER_HOME/tmp"]
